@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!-- Descripcion de creación -->
+    <meta name="description" content="Curso JavaScript - Clase de Bootstrap">
+    <meta name="keywords" content="HTML, CSS, JavaScript, Bootstrap">
+    <meta name="author" content="Darío Valenzuela">
+    
+    <!-- Descripción de visualización -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Declaración de archivo para Favicon  -->
+    <link rel="shortcut icon" type="image/png" href="assets/img/favicon.png">
+
+    <!-- Conexión con Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- A continuación se conecta la fuente deseada (cambiar xxxxxxxxx)-->
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Roboto:wght@500&display=swap" rel="stylesheet">
+
+    <!-- Conexión a repositorio FONTAWESOME para inclusión de iconos -->
+    <script src="https://kit.fontawesome.com/5591d98e04.js" crossorigin="anonymous"></script>
+
+    <!-- Declaración de hojas de estilo -->
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+
+
+    <!-- Tíyulo de la página -->
+    <title>Document</title>
+</head>
+
+
+<body>
+
+
+    <header>
+        <h1>Campeonato Nacional de CACHIPÚN</h1>
+        <hr>
+    </header>
+    <main>
+        <h2 class="text-center pb-5" id="subtitulo"></h2>
+
+        <section class="container" id="grillajuego">
+            <div class="row">
+                <div class="col-3 border">
+                    <h4 id="jugador"></h4>
+                    <hr>
+                    <h5 class="pb-2">Seleccione su jugada:</h5>
+                    <div id="opciones" class="text-center">
+                        <div><input type=image src="assets/img/piedra01.png" alt="Piedra" width="100" height="100"
+                                onclick="seleccion(0)" id="botonjuego"></div>
+                        <div><input type=image src="assets/img/papel01.png" alt="Papel" width="100" height="100"
+                                onclick="seleccion(1)" id="botonjuego"> </div>
+                        <div><input type=image src="assets/img/tijera01.png" alt="Tijera" width="100" height="100"
+                                onclick="seleccion(2)" id="botonjuego"> </div>
+                    </div>
+                </div>
+
+                <div class="col-3 border">
+                    <h4>CPU</h4>
+                    <hr>
+                    <h5 class="pb-2">Mi selección:</h5>
+                    <div id="opciones" class="text-center">
+                        <div><img src="assets/img/favicon.png" width="100" height="100" id="decisionCPU"></div>
+                    </div>
+                </div>
+
+                <div class="col-3 border">
+                    <h4>Rondas</h4>
+                    <hr>
+                    <h5 id="ganorondaprevia"></h5>
+
+                </div>
+
+                <div class="col-3 border">
+                    <h4 id="Campeonato">Campeonato</h4>
+                    <hr>
+                    <h5 id="victoriasjugador"></h5>
+                    <h5 id="victoriascpu"></h5>
+                    <br>
+                    <h5 class="bolder" id="ganacampeonato"></h5>
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row container">
+                            <div class="col-6 text-center">
+                                <h6 id="mod_jugador">Jugador:</h6>
+                                <img src="" width="50px" height="50px" id="ppt_jugador">
+                            </div>
+                            <div class="col-6 text-center">
+                                <h6 id="mod_cpu">CPU:</h6>
+                                <img src="" width="50px" height="50px" id="ppt_cpu">
+                            </div>
+                        </div>
+
+                        <div class="row container">
+                            <div class="col-12 text-center">
+                                <h6 id="mod_quiengana">Jugador:</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- Script para solicitar el nombre del usuario, se ejecuta al caragr la página -->
+        <script type="text/javascript">
+            window.onload = function () {
+                solicita_nombre();
+            };
+        </script>
+    </main>
+
+    <footer>
+        
+    </footer>
+
+
+
+
+<!-- SCRIPTS de jquery y bootstraps para manejo correcto de framework Bootstrap -->
+
+    <!--jQuery 3.6.0-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <!--Popper JS 1.14.3-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+
+    <!--Bootstrap JS 4.2.1-->
+    <script src="assets/js/bootstrap.min.js"></script>
+
+    <!-- Declaración de scripts personales -->
+    <script src="assets/js/main.js"></script>
+
+</body>
+
+
+</html>

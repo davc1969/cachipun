@@ -1,0 +1,29 @@
+header h1{
+    font-family: 'Permanent Marker', cursive;
+    font-size: 3rem;
+    color: darkblue;
+    text-align: center;
+    padding-top: 3rem;
+}
+
+header hr{
+    width: 40%;
+    border-color: blue;
+}
+
+
+#grillajuego h4{
+    font-family: 'Permanent Marker', cursive;
+    font-size: 2rem;
+    color: black;
+    text-align: center;
+    padding-top: 1rem;
+}
+
+#grillajuego hr{
+    border-color: red;
+}
+
+#botonjuego:hover{
+    transform: scale(1.2);
+}
