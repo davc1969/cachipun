@@ -169,15 +169,15 @@ function seleccion(opcion){
 function selectimage(opcionimagen){
     switch(opcionimagen){
         case 0:{
-            imagen = "/assets/img/piedra01.png";
+            imagen = "assets/img/piedra01.png";
             break;
         }
         case 1:{
-            imagen = "/assets/img/papel01.png";
+            imagen = "../img/papel01.png";
             break;
         }
         case 2:{
-            imagen = "/assets/img/tijera01.png";
+            imagen = "img/tijera01.png";
             break;
         }
     }
