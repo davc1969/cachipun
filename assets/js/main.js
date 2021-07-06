@@ -173,11 +173,11 @@ function selectimage(opcionimagen){
             break;
         }
         case 1:{
-            imagen = "../img/papel01.png";
+            imagen = "assets/img/papel01.png";
             break;
         }
         case 2:{
-            imagen = "img/tijera01.png";
+            imagen = "assets/img/tijera01.png";
             break;
         }
     }
