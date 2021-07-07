@@ -6,6 +6,8 @@ var empates = 0;
 var nombre = "";
 var ganaronda = "";
 var ganadoresrondas = "";
+var finalizar_torneo = false;
+var modal_is_closed = false;
 
 // función para solicitar el nombre y personalizar la pantalla con el nombre del usuario
 function solicita_nombre(){
@@ -26,8 +28,6 @@ function solicita_nombre(){
 
 
 }
-
-
 
 
 
@@ -53,9 +53,8 @@ function seleccion(opcion){
     var opcionCPU = Math.floor(Math.random()*3);
 
     var imagen_jugador = selectimage(opcion);
-    console.log(imagen_jugador);
     var imagen_cpu = selectimage(opcionCPU);
-    console.log(imagen_cpu);
+
 
     switch(opcion){
         case 0:{  //piedra
@@ -122,45 +121,26 @@ function seleccion(opcion){
     }
 
     document.getElementById("decisionCPU").src= imagen_cpu;
-
-
     document.getElementById("exampleModalLabel").innerHTML = `Resultado de la ronda ${rondaenjuego}:`
-    document.getElementById("mod_jugador").innerHTML = nombre + opcion;
-    document.getElementById("mod_cpu").innerHTML = "CPU" + opcionCPU;
+    document.getElementById("mod_jugador").innerHTML = nombre;
+    document.getElementById("mod_cpu").innerHTML = "CPU";
     document.getElementById("ppt_jugador").src = imagen_jugador;
     document.getElementById("ppt_cpu").src = imagen_cpu;
     document.getElementById("mod_quiengana").innerHTML = ganaronda;
 
     ganadoresrondas = ganadoresrondas + rondaenjuego + ": " + ganaronda + "<br/>";
-
     document.getElementById("ganorondaprevia").innerHTML = ganadoresrondas;
 
-
-
-
+    finalizar_torneo = false;
 
     $("#exampleModal").modal('show');
 
-    document.getElementById("decisionCPU").src = "../assets/img/favicon.png";
+    setTimeout(() => {  document.getElementById("decisionCPU").src = "../assets/img/favicon.png"; }, 1000);
 
-    console.log(rondaenjuego);
-    if (rondaenjuego >= rondas){
-        alert("Fin del Juego!")
-        document.getElementById("victoriasjugador").innerHTML = `Victorias ${nombre}: ${victorias_jugador}`;
-        document.getElementById("victoriascpu").innerHTML = `Victorias CPU: ${victorias_cpu}`;
-        
-        if (victorias_jugador > victorias_cpu){
-            document.getElementById("ganacampeonato").innerHTML = `El campeón es: ${nombre}`;
-        } else if(victorias_jugador > victorias_cpu){
-            document.getElementById("ganacampeonato").innerHTML = "El campeón es la CPU";
-        } else {
-            document.getElementById("ganacampeonato").innerHTML = "Hubo un empate";
-        }
-        
-    }
+    
 
-    rondaenjuego += 1;
-
+    finalizar_torneo = false;
+    console.log("despues de final " & finalizar_torneo);
 
 }
 
@@ -182,5 +162,41 @@ function selectimage(opcionimagen){
         }
     }
     return imagen;
+
+}
+
+
+function fin_de_juego(){
+
+    if (rondaenjuego >= rondas){
+        //
+        document.getElementById("victoriasjugador").innerHTML = `Victorias ${nombre}: ${victorias_jugador}`;
+        document.getElementById("victoriascpu").innerHTML = `Victorias CPU: ${victorias_cpu}`;
+        
+        if (victorias_jugador > victorias_cpu){
+            document.getElementById("ganacampeonato").innerHTML = `El campeón es: ${nombre}`;
+        } else if(victorias_jugador > victorias_cpu){
+            document.getElementById("ganacampeonato").innerHTML = "El campeón es la CPU";
+        } else {
+            document.getElementById("ganacampeonato").innerHTML = "Hubo un empate";
+        }
+
+        alert("Fin del Juego!")
+
+        document.getElementById("reinicio").style.display = "block";
+        
+    };
+
+    console.log(rondaenjuego);
+    console.log(finalizar_torneo);
+
+
+    rondaenjuego += 1;
+
+}
+
+
+function reiniciar(){
+    location.reload();
 
 }

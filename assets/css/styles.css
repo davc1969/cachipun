@@ -27,3 +27,7 @@ header hr{
 #botonjuego:hover{
     transform: scale(1.2);
 }
+
+.btn_reinicio{
+    display: none;
+}
