@@ -3,8 +3,8 @@
 <head>
 
     <!-- Descripcion de creación -->
-    <meta name="description" content="Curso JavaScript - Clase de Bootstrap">
-    <meta name="keywords" content="HTML, CSS, JavaScript, Bootstrap">
+    <meta name="description" content="Curso JavaScript - Clase de JavaScript">
+    <meta name="keywords" content="HTML, CSS, JavaScript, Bootstrap, jQuery">
     <meta name="author" content="Darío Valenzuela">
     
     <!-- Descripción de visualización -->
@@ -28,9 +28,23 @@
     <link rel="stylesheet" href="assets/css/bootstrap.css">
     <link rel="stylesheet" href="assets/css/styles.css">
 
+<!-- SCRIPTS de jquery y bootstraps para manejo correcto de framework Bootstrap -->
+
+    <!--jQuery 3.6.0-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <!--Popper JS 1.14.3-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+
+    <!--Bootstrap JS 4.2.1-->
+    <script src="assets/js/bootstrap.min.js"></script>
+
+    <!-- Declaración de scripts personales -->
+    <script src="assets/js/main.js"></script>
 
     <!-- Tíyulo de la página -->
-    <title>Document</title>
+    <title>Cachipun</title>
+    
 </head>
 
 
@@ -46,7 +60,7 @@
 
         <section class="container" id="grillajuego">
             <div class="row">
-                <div class="col-3 border">
+                <div class="col-6 col-lg-3 border">
                     <h4 id="jugador"></h4>
                     <hr>
                     <h5 class="pb-2">Seleccione su jugada:</h5>
@@ -60,7 +74,7 @@
                     </div>
                 </div>
 
-                <div class="col-3 border">
+                <div class="col-6 col-lg-3 border">
                     <h4>CPU</h4>
                     <hr>
                     <h5 class="pb-2">Mi selección:</h5>
@@ -69,20 +83,24 @@
                     </div>
                 </div>
 
-                <div class="col-3 border">
+                <div class="col-6 col-lg-3 border">
                     <h4>Rondas</h4>
                     <hr>
                     <h5 id="ganorondaprevia"></h5>
 
                 </div>
 
-                <div class="col-3 border">
+                <div class="col-6 col-lg-3 border ">
                     <h4 id="Campeonato">Campeonato</h4>
                     <hr>
                     <h5 id="victoriasjugador"></h5>
                     <h5 id="victoriascpu"></h5>
                     <br>
                     <h5 class="bolder" id="ganacampeonato"></h5>
+                    <br>
+                    <div class="text-center">
+                        <button type="button" class="btn btn-primary btn-lg btn_reinicio text-center" id="reinicio" onclick="reiniciar()">Volver a empezar</button>">
+                    </div>
                 </div>
             </div>
         </section>
@@ -133,28 +151,26 @@
                 solicita_nombre();
             };
         </script>
+
+
+
+        <script>
+            $(document).ready(function () {
+                $("#exampleModal").on('hidden.bs.modal', function () {
+                    fin_de_juego();
+                });
+            });
+        </script>
+
     </main>
 
     <footer>
-        
+
     </footer>
 
 
 
 
-<!-- SCRIPTS de jquery y bootstraps para manejo correcto de framework Bootstrap -->
-
-    <!--jQuery 3.6.0-->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-
-    <!--Popper JS 1.14.3-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-
-    <!--Bootstrap JS 4.2.1-->
-    <script src="assets/js/bootstrap.min.js"></script>
-
-    <!-- Declaración de scripts personales -->
-    <script src="assets/js/main.js"></script>
 
 </body>
 
