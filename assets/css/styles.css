@@ -1,6 +1,6 @@
 header h1{
     font-family: 'Permanent Marker', cursive;
-    font-size: 3rem;
+    font-size: 50px;
     color: darkblue;
     text-align: center;
     padding-top: 3rem;
@@ -30,4 +30,26 @@ header hr{
 
 .btn_reinicio{
     display: none;
+}
+
+.tituloTarjeta{
+
+}
+
+@media (max-width: 576px){
+
+    header h1{
+        font-size: 30px;
+    }
+
+    #botonjuego {
+        width: 40px;
+        height: 40px;
+    }
+
+    #decisionCPU {
+        width: 40px;
+        height: 40px;
+    }
+
 }

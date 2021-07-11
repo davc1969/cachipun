@@ -62,37 +62,37 @@
         <section class="container" id="grillajuego">
             <div class="row">
                 <div class="col-6 col-lg-3 border">
-                    <h4 id="jugador"></h4>
+                    <h4 id="jugador" class = "tituloTarjeta">Jugador</h4>
                     <hr>
                     <h5 class="pb-2">Seleccione su jugada:</h5>
-                    <div id="opciones" class="text-center">
-                        <div><input type=image src="assets/img/piedra01.png" alt="Piedra" width="100" height="100"
-                                onclick="seleccion(0)" id="botonjuego"></div>
-                        <div><input type=image src="assets/img/papel01.png" alt="Papel" width="100" height="100"
-                                onclick="seleccion(1)" id="botonjuego"> </div>
-                        <div><input type=image src="assets/img/tijera01.png" alt="Tijera" width="100" height="100"
-                                onclick="seleccion(2)" id="botonjuego"> </div>
+                    <div id="opciones" class="text-center d-flex justify-content-around">
+                        <input type=image src="assets/img/piedra01.png" alt="Piedra" width="80" height="80"
+                                onclick="seleccion(2)" id="botonjuego" data-toggle="tooltip" data-placement="top" title="Piedra">
+                        <input type=image src="assets/img/papel01.png" alt="Papel" width="80" height="80"
+                                onclick="seleccion(0)" id="botonjuego" data-toggle="tooltip" data-placement="top" title="Papel">
+                        <input type=image src="assets/img/tijera01.png" alt="Tijera" width="80" height="80"
+                                onclick="seleccion(1)" id="botonjuego" data-toggle="tooltip" data-placement="top" title="Tijera">
                     </div>
                 </div>
 
                 <div class="col-6 col-lg-3 border">
-                    <h4>CPU</h4>
+                    <h4 class = "tituloTarjeta">CPU</h4>
                     <hr>
                     <h5 class="pb-2">Mi selección:</h5>
                     <div id="opciones" class="text-center">
-                        <div><img src="assets/img/favicon.png" width="100" height="100" id="decisionCPU"></div>
+                        <div><img src="assets/img/favicon.png" width="80" height="80" id="decisionCPU"></div>
                     </div>
                 </div>
 
                 <div class="col-6 col-lg-3 border">
-                    <h4>Rondas</h4>
+                    <h4 class = "tituloTarjeta">Rondas</h4>
                     <hr>
                     <h5 id="ganorondaprevia"></h5>
 
                 </div>
 
                 <div class="col-6 col-lg-3 border ">
-                    <h4 id="Campeonato">Campeonato</h4>
+                    <h4 id="Campeonato" class = "tituloTarjeta">Campeonato</h4>
                     <hr>
                     <h5 id="victoriasjugador"></h5>
                     <h5 id="victoriascpu"></h5>
@@ -100,7 +100,7 @@
                     <h5 class="bolder" id="ganacampeonato"></h5>
                     <br>
                     <div class="text-center">
-                        <button type="button" class="btn btn-primary btn-lg btn_reinicio text-center" id="reinicio" onclick="reiniciar()">Volver a empezar</button>">
+                        <button type="button" class="btn btn-primary btn-lg btn_reinicio text-center" id="reinicio" onclick="reiniciar()">Volver a empezar</button>
                     </div>
                 </div>
             </div>
@@ -154,14 +154,6 @@
         </script>
 
 
-
-        <script>
-            $(document).ready(function () {
-                $("#exampleModal").on('hidden.bs.modal', function () {
-                    fin_de_juego();
-                });
-            });
-        </script>
 
     </main>
 

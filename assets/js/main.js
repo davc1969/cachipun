@@ -1,13 +1,20 @@
-var rondaenjuego = 1;
-var rondas = 1
-var victorias_jugador = 0;
-var victorias_cpu = 0;
-var empates = 0;
-var nombre = "";
-var ganaronda = "";
-var ganadoresrondas = "";
-var finalizar_torneo = false;
-var modal_is_closed = false;
+// Activación de los tooltips ())utilizados en las imágenes que se usan para seleccionar la opción del jugador)
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
+
+// Defino varias variables que usaré en el programa.  Las defino en esta zona porque se convierten en variables globales
+// que puedo usar en todo el programa
+let rondaenjuego = 1;
+let rondas = 1
+let victorias_jugador = 0;
+let victorias_cpu = 0;
+let empates = 0;
+let nombre = "";
+let ganaronda = "";
+let ganadoresrondas = "";
+let finalizar_torneo = false;
+let modal_is_closed = false;
 
 // función para solicitar el nombre y personalizar la pantalla con el nombre del usuario
 function solicita_nombre(){
@@ -23,20 +30,19 @@ function solicita_nombre(){
     //luego lo inserta en el documento utilizando innerHTML, en el subtítulo
     document.getElementById("subtitulo").innerHTML = `Hoy, ${nombre} y la CPU se enfrentarán a ${rondas} rondas`;
 
-    //se agrega el en la grilla, en la posición del jugador
+    //se agrega el nombre en la grilla, en la posición del jugador
     document.getElementById("jugador").innerHTML = nombre;
-
-
 }
 
 
-
-function seleccion(opcion){
+// Función que evalúa la jugada.  Toma la selección del jugador, determina una selección para la computadora
+// y con una sencilla evaluación determina al ganador, o el empate
+function seleccion(opcionJugador){
 
     //Opciones tanto para el jugador y el CPU
-    // 0: piedra
-    // 1: papel
-    // 2: tijera
+    // 0: papel
+    // 1: tijera
+    // 2: piedra
     //Las posibles combinaciones serían:
     //  jugador: 0 - CPU: 0 => empate
     //  jugador: 0 - CPU: 1 => gana CPU
@@ -52,74 +58,35 @@ function seleccion(opcion){
 
     var opcionCPU = Math.floor(Math.random()*3);
 
-    var imagen_jugador = selectimage(opcion);
+    var imagen_jugador = selectimage(opcionJugador);
     var imagen_cpu = selectimage(opcionCPU);
 
+    
+    //Evaluacion de la jugada, evalúa todo y da como resultado un entero: 0:gana el jugador, 1: empate, 2:pierde el jugador
+    const r = ((opcionJugador - opcionCPU + 2) % 1.5) * 2;
 
-    switch(opcion){
-        case 0:{  //piedra
-            switch(opcionCPU){
-                case 0:{  //piedra
-                    empates += 1;
-                    ganaronda = "Empate";
-                    break;
-                }
-                case 1:{  //papel
-                    victorias_cpu += 1;
-                    ganaronda = "Gana CPU";
-                    break;
-                }
-                case 2:{  //tijeras
-                    victorias_jugador += 1;
-                    ganaronda = `gana ${nombre}`;
-                    break;
-                }
-            }
+    switch (r) {
+        case 0:{
+            victorias_jugador++;
+            ganaronda = `gana ${nombre}`;
             break;
         }
+
         case 1:{
-            switch(opcionCPU){
-                case 0:{
-                    victorias_jugador += 1;
-                    ganaronda = `gana ${nombre}`;
-                    break;
-                }
-                case 1:{
-                    empates += 1;
-                    ganaronda = "Empate";
-                    break;
-                }
-                case 2:{
-                    victorias_cpu += 1;
-                    ganaronda = "Gana CPU";
-                    break;
-                }
-            }
+            empates++;
+            ganaronda = `empate`;
             break;
         }
+
         case 2:{
-            switch(opcionCPU){
-                case 0:{
-                    victorias_cpu += 1;
-                    ganaronda = "Gana CPU"
-                    break;
-                }
-                case 1:{
-                    victorias_jugador += 1;
-                    ganaronda = `gana ${nombre}`;
-                    break;
-                }
-                case 2:{
-                    empates += 1;
-                    ganaronda = "Empate";
-                    break;
-                }
-            }
+            victorias_cpu++;
+            ganaronda = "Gana CPU";
             break;
         }
 
     }
 
+    // De acuerdo al resultado de la jugada, se llenan algunos campos de un modal donde se mostrarán los resultados
     document.getElementById("decisionCPU").src= imagen_cpu;
     document.getElementById("exampleModalLabel").innerHTML = `Resultado de la ronda ${rondaenjuego}:`
     document.getElementById("mod_jugador").innerHTML = nombre;
@@ -131,33 +98,31 @@ function seleccion(opcion){
     ganadoresrondas = ganadoresrondas + rondaenjuego + ": " + ganaronda + "<br/>";
     document.getElementById("ganorondaprevia").innerHTML = ganadoresrondas;
 
-    finalizar_torneo = false;
-
     $("#exampleModal").modal('show');
 
-    setTimeout(() => {  document.getElementById("decisionCPU").src = "../assets/img/favicon.png"; }, 1000);
+    setTimeout(() => {  document.getElementById("decisionCPU").src = "assets/img/favicon.png"; }, 1000);
 
-    
 
-    finalizar_torneo = false;
-    console.log("despues de final " & finalizar_torneo);
+    // Verifica que sea la última ronda que hay que jugar y de ser así llama la función que cierra el juego
+    if (rondaenjuego >= rondas) { fin_de_juego() }
+    rondaenjuego++;
 
 }
 
 
-
+// Función para seleccionar la imagen a mostrar en el modal de acuerdo a la opción del jugador y del CPU
 function selectimage(opcionimagen){
     switch(opcionimagen){
         case 0:{
-            imagen = "assets/img/piedra01.png";
-            break;
-        }
-        case 1:{
             imagen = "assets/img/papel01.png";
             break;
         }
-        case 2:{
+        case 1:{
             imagen = "assets/img/tijera01.png";
+            break;
+        }
+        case 2:{
+            imagen = "assets/img/piedra01.png";
             break;
         }
     }
@@ -166,38 +131,38 @@ function selectimage(opcionimagen){
 }
 
 
-
+// FUnción que llena  la sección del resultado el campeonato diciendo quien gana.  Muestra un boton para reinciiar
 function fin_de_juego(){
 
     if (rondaenjuego >= rondas){
         //
         document.getElementById("victoriasjugador").innerHTML = `Victorias ${nombre}: ${victorias_jugador}`;
         document.getElementById("victoriascpu").innerHTML = `Victorias CPU: ${victorias_cpu}`;
-        
+
         if (victorias_jugador > victorias_cpu){
             document.getElementById("ganacampeonato").innerHTML = `El campeón es: ${nombre}`;
-        } else if(victorias_jugador > victorias_cpu){
+        } else if(victorias_jugador < victorias_cpu){
             document.getElementById("ganacampeonato").innerHTML = "El campeón es la CPU";
         } else {
             document.getElementById("ganacampeonato").innerHTML = "Hubo un empate";
         }
 
-        alert("Fin del Juego!")
+        setTimeout(() => {  alert("Fin del Juego!"); }, 2000);
 
         document.getElementById("reinicio").style.display = "block";
-        
+
+        const btns_jgo = document.querySelectorAll("#botonjuego");
+        for (let i = 0; i < btns_jgo.length; i++){
+            btns_jgo[i].disabled = true;
+        }
     };
-
-    console.log(rondaenjuego);
-    console.log(finalizar_torneo);
-
-
-    rondaenjuego += 1;
 
 }
 
-
+// función para reiniciar el juego, carga la página nuevamente
 function reiniciar(){
     location.reload();
 
 }
+
+
